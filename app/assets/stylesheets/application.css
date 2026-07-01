@@ -8,3 +8,403 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Sessions/new page */
+.login-split-container {
+    display: flex;
+    min-height: 100vh;
+    margin: -0.8rem;
+}
+
+
+.login-left-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: #ffffff;
+}
+
+.login-form-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-right-panel {
+    flex: 1;
+    background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+.login-form-wrapper .field {
+    margin-bottom: 1.5rem;
+}
+
+.login-form-wrapper input[type="email"],
+.login-form-wrapper input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.login-form-wrapper .actions input {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.login-form-wrapper input[type="email"],
+.login-form-wrapper input[type="password"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-top: 0.5rem;
+    border-radius: 5rem;
+    border: 0.1rem solid darkslateblue;
+}
+
+.login-form-wrapper .actions input {
+    border-radius: 5rem;
+    padding: 0.75rem 1rem;
+    margin-top: 0.5rem;
+    width: 110%;
+    cursor: pointer;
+    background: darkslateblue;
+    color: white;
+}
+
+
+.auth-toggle-container {
+    position: relative;
+    display: flex;
+    background-color: #f1f5f9;
+    border-radius: 5rem;
+    padding: 0.4rem;
+    margin-bottom: 2rem;
+}
+
+.auth-toggle-slider {
+    position: absolute;
+    top: 0.4rem;
+    left: 0.4rem;
+    height: calc(100% - 0.8rem);
+    width: calc(50% - 0.4rem);
+    background-color: darkslateblue;
+    border-radius: 5rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.auth-toggle-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    z-index: 2;
+    transition: color 0.3s ease;
+    text-align: center;
+}
+
+.auth-toggle-btn.active {
+    color: white;
+}
+
+.forgot-link-wrapper {
+    text-align: right;
+    margin-top: 0.5rem;
+}
+
+.back-link-wrapper {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.text-link {
+    color: #64748b;
+    font-size: 0.85rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.text-link:hover {
+    color: #0f172a;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .login-split-container {
+        flex-direction: column;
+    }
+    .login-right-panel {
+        display: none;
+    }
+}
+
+/* Nav Bar */
+
+.main-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: darkslateblue;
+    box-shadow: 0 0.1rem 0.2rem -0.2rem gray;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* The Brand Logo/Name */
+.navbar-brand a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+/* Container for the right-side links */
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* Puts space between each link */
+}
+
+/* Standard Links */
+.navbar-links a {
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.navbar-links a:hover {
+    color: #0f172a;
+}
+
+/* The Logout Button (styled as a small pill) */
+
+.nav-logout-btn {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.nav-logout-btn:hover {
+    background-color: #e2e8f0;
+}
+
+/*Index page - try combine with another, too sparse TODO*/
+
+.user-email a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.user-email a:hover {
+    color: #94a3b8;
+}
+
+.user_index_card {
+    width: 80%;
+    border-radius: 2rem;
+    background: #dbdbdb;
+    padding: 2rem 2rem 2rem 2rem;
+    margin: 0 auto 1rem auto;
+    color: black;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.unfollow_follow_button button {
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    border-radius: 5rem;
+
+    color: #2c2c2c;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+.btn-follow {
+    background-color: green;
+    color: #2c2c2c;
+}
+
+.btn-follow:hover {
+    background-color: #e2e8f0;
+}
+
+.btn-unfollow {
+    background-color: red;
+    color: #ef4444;
+    border: 2px solid #ef4444;
+}
+
+.btn-unfollow:hover {
+    background-color: #ef4444;
+    color: white;
+}
+
+/*Profile page*/
+
+.pf-profile-container {
+    max-width: 58.4375rem;
+    margin: 0 auto;
+    padding: 1.875rem 1.25rem;
+}
+
+.pf-profile-header {
+    display: flex;
+    margin-bottom: 2.75rem;
+}
+
+.pf-profile-pic {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin-right: 1.875rem;
+}
+
+.pf-avatar {
+    width: 9.375rem;
+    height: 9.375rem;
+    border-radius: 50%;
+    background-color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: #94a3b8;
+    border: 1px solid #e2e8f0;
+}
+
+.pf-profile-info {
+    flex: 2;
+}
+
+.pf-profile-title-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    gap: 1.25rem;
+}
+
+.pf-username {
+    font-size: 1.75rem;
+    font-weight: 300;
+    margin: 0;
+    color: #262626;
+}
+
+.pf-profile-actions form {
+    margin: 0;
+}
+
+.pf-btn {
+    padding: 0.4375rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.pf-btn-primary {
+    background-color: #0095f6;
+    color: white;
+}
+
+.pf-btn-primary:hover {
+    background-color: #1877f2;
+}
+
+.pf-btn-secondary {
+    background-color: #efefef;
+    color: #000;
+}
+
+.pf-btn-secondary:hover {
+    background-color: #dbdbdb;
+}
+
+.pf-profile-stats {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem 0;
+    font-size: 1rem;
+    color: #262626;
+}
+
+.pf-stat-count {
+    font-weight: 600;
+}
+
+.pf-profile-bio {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: #262626;
+}
+
+.pf-full-name {
+    font-weight: 600;
+    margin: 0 0 0.3125rem 0;
+}
+
+.pf-profile-tabs {
+    border-top: 1px solid #dbdbdb;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.25rem;
+}
+
+.pf-tab {
+    padding: 0.9375rem 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #8e8e8e;
+    border-top: 1px solid transparent;
+    margin-top: -1px;
+}
+
+.pf-tab.active {
+    color: #262626;
+    border-top: 1px solid #262626;
+}
+
+.pf-empty-state {
+    text-align: center;
+    padding: 3.75rem;
+    color: #8e8e8e;
+}

@@ -1,6 +1,53 @@
-<h1><%= @user.email %>'s Profile</h1>
+<div class="pf-profile-container">
 
-<p>Following: <%= @user.following.count %></p>
-<p>Followers: <%= @user.followers.count %></p>
+  <header class="pf-profile-header">
 
-<%= link_to "Back to Directory", users_path %>
+    <div class="pf-profile-pic">
+      <div class="pf-avatar">
+        <%= @user.email.first.upcase %>
+      </div>
+    </div>
+
+    <div class="pf-profile-info">
+
+      <div class="pf-profile-title-row">
+        <h1 class="pf-username"><%= @user.email.split('@').first %></h1>
+
+        <div class="pf-profile-actions">
+          <% if current_user == @user %>
+            <button class="pf-btn pf-btn-secondary">Edit Profile</button>
+          <% else %>
+            <% if current_user.following.include?(@user) %>
+              <%= button_to "Unfollow", follow_path(id: current_user.following_relationships.find_by(followed: @user).id), method: :delete, class: "pf-btn pf-btn-secondary" %>
+            <% else %>
+              <%= button_to "Follow", follows_path(followed_id: @user.id), method: :post, class: "pf-btn pf-btn-primary" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <ul class="pf-profile-stats">
+        <li><span class="pf-stat-count">0</span> posts</li>
+        <li><span class="pf-stat-count"><%= @user.followers.count %></span> followers</li>
+        <li><span class="pf-stat-count"><%= @user.following.count %></span> following</li>
+      </ul>
+
+      <div class="pf-profile-bio">
+        <p class="pf-full-name"><%= @user.email %></p>
+        <p>My BookShelf! Wait for the bio.</p>
+      </div>
+
+    </div>
+  </header>
+
+  <div class="pf-profile-tabs">
+    <span class="pf-tab active">POSTS</span>
+  </div>
+
+  <div class="pf-post-grid">
+    <div class="pf-empty-state">
+      <h2>No Posts Yet</h2>
+    </div>
+  </div>
+
+</div>

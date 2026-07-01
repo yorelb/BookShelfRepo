@@ -1,0 +1,119 @@
+<div class="login-split-container">
+
+  <div class="login-left-panel">
+    <div class="login-form-wrapper">
+
+      <div class="auth-toggle-container" id="main-toggle">
+        <div id="toggle-slider" class="auth-toggle-slider"></div>
+        <button id="login-tab" class="auth-toggle-btn active" onclick="switchTab('login', 0)">Log In</button>
+        <button id="signup-tab" class="auth-toggle-btn" onclick="switchTab('signup', 1)">Sign Up</button>
+      </div>
+
+      <div id="login-form" class="auth-form-container" style="display: block;">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password" %>
+
+            <div class="forgot-link-wrapper">
+              <a href="#" onclick="showForgotForm(); return false;" class="text-link">Forgot password?</a>
+            </div>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field remember-me">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <%= f.submit "Log in" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div id="signup-form" class="auth-form-container" style="display: none;">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autocomplete: "email" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password %> <% if @minimum_password_length %><em>(<%= @minimum_password_length %> characters minimum)</em><% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Sign up" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div id="forgot-form" class="auth-form-container" style="display: none;">
+        <h2>Reset Password</h2>
+        <p>Enter your email and we will send you a reset link.</p>
+
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autocomplete: "email" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Send reset link" %>
+          </div>
+        <% end %>
+
+        <div class="back-link-wrapper">
+          <a href="#" onclick="switchTab('login', 0); return false;" class="text-link">← Back to Log In</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="login-right-panel">
+  </div>
+
+</div>
+
+<script>
+    function switchTab(tabName, positionIndex) {
+        document.getElementById('main-toggle').style.display = 'flex';
+
+        document.querySelectorAll('.auth-form-container').forEach(form => {
+            form.style.display = 'none';
+        });
+
+        document.querySelectorAll('.auth-toggle-btn').forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        document.getElementById(tabName + '-form').style.display = 'block';
+        document.getElementById(tabName + '-tab').classList.add('active');
+
+        const slider = document.getElementById('toggle-slider');
+        slider.style.transform = `translateX(${positionIndex * 100}%)`;
+    }
+
+    function showForgotForm() {
+        document.querySelectorAll('.auth-form-container').forEach(form => {
+            form.style.display = 'none';
+        });
+        document.getElementById('main-toggle').style.display = 'none';
+
+        document.getElementById('forgot-form').style.display = 'block';
+    }
+</script>
