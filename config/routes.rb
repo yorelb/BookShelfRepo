@@ -15,11 +15,13 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  #Follows
+  # Follows
   #
   # Create and destroy routes for follows
   resources :follows, only: [ :create, :destroy ]
   # Seeing profiles
   resources :users, only: [ :index, :show ]
   root "users#index"
+  # Posts
+  resources :posts, only: [ :create, :destroy ]
 end

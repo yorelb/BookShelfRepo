@@ -408,3 +408,9 @@ body, html {
     padding: 3.75rem;
     color: #8e8e8e;
 }
+
+.pf-post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+}

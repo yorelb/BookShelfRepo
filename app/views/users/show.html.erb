@@ -45,9 +45,11 @@
   </div>
 
   <div class="pf-post-grid">
-    <div class="pf-empty-state">
-      <h2>No Posts Yet</h2>
-    </div>
+    <% @user.posts.each do |post| %>
+      <div class="ig-post-item">
+        <%= post.body %>
+      </div>
+    <% end %>
   </div>
 
 </div>
