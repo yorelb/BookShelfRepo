@@ -15,10 +15,14 @@ class FollowsController < ApplicationController
   end
 
   def destroy
-    # Find and delete record
-    @follow = current_user.following_relationships.find_by(followed: params[:id])
-    @follow.destroy
-    # Redirect
-    redirect_to user_path(@follow.followed), notice: "You are no longer following this user"
+    @follow = current_user.following_relationships.find_by(id: params[:id])
+
+    if @follow
+      unfollowed_user = @follow.followed
+      @follow.destroy
+      redirect_to user_path(unfollowed_user), notice: "You are no longer following this user."
+    else
+      redirect_to users_path, alert: "Could not complete that action."
+    end
   end
 end

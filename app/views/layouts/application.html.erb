@@ -23,20 +23,31 @@
   </head>
 
   <body>
-    <nav class="main-navbar">
-      <div class="navbar-brand">
-        <%= link_to "BookShelf", root_path %>
-      </div>
+    <div class="<%= user_signed_in? ? 'app-wrapper' : 'auth-wrapper' %>">
 
-      <div class="navbar-links">
-        <% if user_signed_in? %>
-          <%= link_to "Directory", users_path %>
-          <%= link_to "My Profile", user_path(current_user) %>
+      <% if user_signed_in? %>
+        <nav class="left-sidebar">
+          <div class="sidebar-logo">
+            <%= link_to "Make a logo bud", root_path, class: "logo-link" %>
+          </div>
 
-          <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "nav-logout-btn" %>
-        <% end %>
-      </div>
-    </nav>
-    <%= yield %>
+          <ul class="sidebar-menu">
+            <li><%= link_to "Home", root_path, class: "sidebar-link" %></li>
+            <li><%= link_to "Profile", user_path(current_user), class: "sidebar-link" %></li>
+            <li>
+              <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "sidebar-link logout-btn" %>
+            </li>
+          </ul>
+        </nav>
+      <% end %>
+
+      <main class="<%= user_signed_in? ? 'main-content-wrapper' : 'auth-main' %>">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+
+        <%= yield %>
+      </main>
+
+    </div>
   </body>
 </html>

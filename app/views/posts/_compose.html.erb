@@ -1,0 +1,13 @@
+<div class="compose-box">
+  <div class="compose-avatar">
+    <%= current_user.email.first.upcase %>
+  </div>
+
+  <%= form_with model: @post, local: true, class: "compose-form" do |f| %>
+    <%= f.text_area :body, placeholder: "What are you reading right now?", class: "compose-input", rows: 2 %>
+
+    <div class="compose-actions">
+      <%= f.submit "Post", class: "btn-post" %>
+    </div>
+  <% end %>
+</div>

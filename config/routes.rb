@@ -23,5 +23,5 @@ Rails.application.routes.draw do
   resources :users, only: [ :index, :show ]
   root "users#index"
   # Posts
-  resources :posts, only: [ :create, :destroy ]
+  resources :posts, only: [ :index, :create, :destroy ]
 end

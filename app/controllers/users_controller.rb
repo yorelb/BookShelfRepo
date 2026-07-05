@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   def index
-    # Get all other users
-    @users = User.where.not(id: current_user&.id)
+    @post = Post.new
+    # Get all other users and ones we don't follow
+    dont_show_users = current_user.following.pluck(:id) << current_user.id
+    @users = User.where.not(id: dont_show_users).limit(10)
+    @posts = Post.order(created_at: :desc)
+
   end
 
   def show
